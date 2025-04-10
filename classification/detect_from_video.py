@@ -137,7 +137,7 @@ def test_full_image_network(video_path, model_path, output_path,
         model = torch.load(model_path)
         print('Model found in {}'.format(model_path))
     else:
-        print('No model found, initializing random model.')
+        print('No model was given, initializing default model.')
     if cuda:
         model = model.cuda()
 
