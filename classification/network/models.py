@@ -10,7 +10,7 @@ import torch
 import pretrainedmodels
 import torch.nn as nn
 import torch.nn.functional as F
-from network.xception import xception
+from .xception import xception
 import math
 import torchvision
 
@@ -18,18 +18,7 @@ import torchvision
 def return_pytorch04_xception(pretrained=True):
     # Raises warning "src not broadcastable to dst" but thats fine
     model = xception(pretrained=False)
-    if pretrained:
-        # Load model in torch 0.4+
-        model.fc = model.last_linear
-        del model.last_linear
-        state_dict = torch.load(
-            '/home/ondyari/.torch/models/xception-b5690688.pth')
-        for name, weights in state_dict.items():
-            if 'pointwise' in name:
-                state_dict[name] = weights.unsqueeze(-1).unsqueeze(-1)
-        model.load_state_dict(state_dict)
-        model.last_linear = model.fc
-        del model.fc
+
     return model
 
 
