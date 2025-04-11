@@ -25,3 +25,5 @@ tqdm
 pretrainedmodels
 torchsummary
 six
+ultralytics
+git+https://github.com/facebookresearch/segment-anything.git
